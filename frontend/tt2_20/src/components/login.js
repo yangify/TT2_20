@@ -1,9 +1,9 @@
     import React from "react";
     import FormControl from '@mui/material/FormControl';
     import TextField from '@material-ui/core/TextField'; 
-    import ReactDOM from "react-dom";
-    import { createBrowserHistory } from "history";
-
+    import { render } from "react-dom";
+    import TopNavBar from "./TopNavBar";
+    import BottomNavBar from "./BottomNavBar";
 class login extends React.Component {
     constructor(props){
         super(props);
@@ -46,12 +46,13 @@ class login extends React.Component {
     }
     render(){
         return (
+            
             <div>
-                <h1>Login Page</h1>
-                <form className={FormControl} onSubmit={this.handleSubmit}>
-                    <TextField id="username" label="Username:" variant="standard" onChange={this.handleUser} />
-                    <TextField id="password" label="Password" variant="standard" onChange={this.handlePw} />
-                    <input type="submit" value="Login"></input>
+                <TopNavBar/>
+                <form className={FormControl}>
+                    <TextField id="username" label="Username:" variant="standard" />
+                    <TextField id="password" label="Password" variant="standard" />
+                    <input type="submit" onSubmit></input>
                 </form>
                 <p>{this.state.success}</p>
             </div>
