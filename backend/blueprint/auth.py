@@ -1,34 +1,25 @@
-from flask import Blueprint, jsonify, request
-import json
+from flask import Blueprint, request, session
+from backend.blueprint.db import Database
 
-from db import Database
 
 auth = Blueprint('login', __name__)
+db = Database()
 
-database = Database()
-@auth.route('/login')
+
+@auth.route('/login', methods=['POST'])
 def login():
-    jsdata = request.get_json()
-    output = authenticate(jsdata)
-    output = json.dumps(output, default=str)
-    return jsonify({"body": output})
-  
-def authenticate(logindata):
-    getusers = database.users()
-    for user in getusers:
-        if logindata['username'] == user['username'] and logindata['password'] == user['password']:
-            output = {
-                "logged": True,
-                "user": user["username"]
-            }
-            return output
-    output = {
-        "logged": False,
-        "output": "Username/Password is wrong"
-    }
-    return output
+    username = request.form['username']
+    password = request.form['password']
+
+    for user in db.users:
+        if username != user['username']: continue
+        if password == user['password']:
+            session['user']: user
+            return {'status': True, 'user': user}
+
+    return {'status': False, 'user': None}
 
 
 @auth.route('/logout')
-def hello_world():
+def logout():
     return 'logout!'
