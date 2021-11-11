@@ -31,7 +31,7 @@ const ProjectTable = () => {
 
   useEffect(() => {
     console.log(myUserid.id);
-    var API_URL = "http://localhost:5000/projects";
+    var API_URL = "http://localhost:5000/projects/"+ myUserid.id;
     fetch(API_URL, {
       method: "get",
     }).then((res) =>
@@ -39,7 +39,7 @@ const ProjectTable = () => {
         console.log(res);
         if (res.status === true) {
           console.log(res.user);
-          this.setState({ redirect: true });
+         
         }
       })
     );
