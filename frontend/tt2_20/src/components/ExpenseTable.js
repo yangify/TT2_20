@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { useParams } from "react-router-dom";
 import {
   Table,
   TableBody,
@@ -12,7 +13,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   Typography,
   TextField,
@@ -33,11 +33,24 @@ const ExpenseTable = () => {
 
   const [open, setOpen] = React.useState(false);
 
+  let { id } = useParams();
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  useEffect(() => {
+  useEffect(async () => {
+    var API_URL = `http://localhost:5000/expenses/${id}`;
+    await fetch(API_URL, {
+      method: "get",
+    }).then((res) =>
+      res.json().then((res) => {
+        console.log(res);
+        if (res.status === true) {
+          console.log(res);
+        }
+      })
+    );
+
     var data_list = [
       {
         id: 1,
@@ -144,8 +157,8 @@ const ExpenseTable = () => {
 
   return (
     <>
-    <div>
-      <TopNavBar/>
+      <div>
+        <TopNavBar />
         <div
           style={{
             display: "flex",
@@ -154,7 +167,6 @@ const ExpenseTable = () => {
           }}
           onClick={handleClickOpen}
         >
-<<<<<<< HEAD
           <h2>Expenses</h2>
           <Button
             variant="contained"
@@ -168,6 +180,7 @@ const ExpenseTable = () => {
             Add Expenses
           </Button>
         </div>
+        <AddDialog />
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -181,58 +194,6 @@ const ExpenseTable = () => {
                 <TableCell align="right">Date Updated</TableCell>
                 <TableCell align="right">Updated By</TableCell>
                 <TableCell align="right">Actions</TableCell>
-=======
-          Add Expenses
-        </Button>
-      </div>
-      <AddDialog />
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>S/N</TableCell>
-              <TableCell align="right">Expense Name</TableCell>
-              <TableCell align="right">Description</TableCell>
-              <TableCell align="right">Budget</TableCell>
-              <TableCell align="right">Date Added</TableCell>
-              <TableCell align="right">Created By</TableCell>
-              <TableCell align="right">Date Updated</TableCell>
-              <TableCell align="right">Updated By</TableCell>
-              <TableCell align="right">Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {expense_data.map((row_data) => (
-              <TableRow
-                key={row_data.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                className={classes.tableRow}
-              >
-                <TableCell component="th" align="left">
-                  {row_data.id}
-                </TableCell>
-                <TableCell align="right">{row_data.expense_name}</TableCell>
-                <TableCell align="right">{row_data.description}</TableCell>
-                <TableCell align="right">{row_data.budget}</TableCell>
-                <TableCell align="right">{row_data.date_added}</TableCell>
-                <TableCell align="right">{row_data.created_by}</TableCell>
-                <TableCell align="right">{row_data.date_updated}</TableCell>
-                <TableCell align="right">{row_data.updated_by}</TableCell>
-                <TableCell align="right">
-                  <Button
-                    variant="contained"
-                    style={{ backgroundColor: "#4341A1", color: "white" }}
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    variant="contained"
-                    style={{ backgroundColor: "#D1675A", color: "white" }}
-                  >
-                    Delete
-                  </Button>
-                </TableCell>
->>>>>>> 8c332d1ff7a93d6b07466ecb04a1c22373ff2c17
               </TableRow>
             </TableHead>
             <TableBody>
@@ -271,7 +232,7 @@ const ExpenseTable = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        <BottomNavBar/>
+        <BottomNavBar />
       </div>
     </>
   );
