@@ -72,7 +72,7 @@ class login extends React.Component {
                 </div>
                 
                 <form onSubmit={this.handleSubmit} className={FormControl}>
-                    <TextField id="username" label="Username:" variant="standard" style={{padding:3}} /> 
+                    <TextField id="username" label="Username" variant="standard" style={{padding:3}} /> 
                     <TextField type="password" id="password" label="Password" variant="standard" style={{padding:3}} />
                     <input type="submit" value="Login"></input>
                 </form>
