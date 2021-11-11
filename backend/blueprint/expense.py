@@ -1,4 +1,4 @@
-from flask import Blueprint, session
+from flask import Blueprint, session, request
 from backend.blueprint.db import Database
 
 expense = Blueprint('expense', __name__)
@@ -29,3 +29,14 @@ def has_project(project_id):
         if p['id'] == project_id and p['id'] != user_id:
             return True
     return False
+
+
+# delete expense in project
+@expense.route('/expense', methods=['DELETE'])
+def expense():
+    expense_id = request.form['expense_id']
+    try:
+        db.expenses.remove(expense_id)
+        return True
+    except:
+        return False
