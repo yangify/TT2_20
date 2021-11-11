@@ -12,6 +12,9 @@ import {
 } from "@material-ui/core";
 import TopNavBar from "./TopNavBar";
 import BottomNavBar from "./BottomNavBar";
+
+import { useNavigate } from "react-router-dom";
+
 const useStyles = makeStyles({
   tableRow: {
     "&:hover": {
@@ -23,26 +26,21 @@ const useStyles = makeStyles({
 const ProjectTable = () => {
   const classes = useStyles();
   const [project_data, set_project_data] = useState([]);
-
-
-  
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     var API_URL = "http://localhost:5000/projects";
-    fetch(
-      API_URL,{
-          method:"get"
-      }
-      ).then(
-          res => res.json().then(
-              res=>{console.log(res)
-              if(res.status === true){
-                  console.log(res.user);
-                  this.setState({ redirect: true });
-              }
-          })
-      )
+    fetch(API_URL, {
+      method: "get",
+    }).then((res) =>
+      res.json().then((res) => {
+        console.log(res);
+        if (res.status === true) {
+          console.log(res.user);
+          this.setState({ redirect: true });
+        }
+      })
+    );
     var data_list = [
       {
         id: 1,
@@ -68,7 +66,7 @@ const ProjectTable = () => {
 
   return (
     <div>
-      <TopNavBar/>
+      <TopNavBar />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -97,6 +95,9 @@ const ProjectTable = () => {
                   <Button
                     variant="contained"
                     style={{ backgroundColor: "#4341A1", color: "white" }}
+                    onClick={() => {
+                      navigate(`/expenses/${row_data.id}`);
+                    }}
                   >
                     View Expenses
                   </Button>
@@ -106,7 +107,7 @@ const ProjectTable = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <BottomNavBar/>
+      <BottomNavBar />
     </div>
   );
 };
