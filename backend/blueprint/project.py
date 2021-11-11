@@ -1,14 +1,12 @@
-from flask import Blueprint, session
+from flask import Blueprint
 
-from blueprint.db import Database
+from backend.blueprint.db import Database
 
 project = Blueprint('project', __name__)
 db = Database()
 
 
-@project.route('/projects', methods=['GET'])
-def get_projects():
-    if 'user' not in session or not session['user']: return {'status': False, 'message': 'no user logged in'}
-    user_id = session['user']['id']
+@project.route('/projects/user_id', methods=['GET'])
+def get_projects(user_id):
     projects = [p for p in db.projects if p['user_id'] == user_id]
     return {'projects': projects}
