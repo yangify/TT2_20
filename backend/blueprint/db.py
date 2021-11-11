@@ -95,35 +95,35 @@ class Database:
             {
                 "id": 1,
                 "username": "user101",
-                "password": "123456",
+                "password": "$pbkdf2-sha256$29000$xpjT.n.vtRZCaC0FQEjJ2Q$DV81tY1Rp1pnCF6QtfDsYZSgPYto1MNZDRRFLCnDWO0",
                 "name": "Jacky",
                 "appointment": "Project Lead"
             },
             {
                 "id": 2,
                 "username": "user102",
-                "password": "123456",
+                "password": "$pbkdf2-sha256$29000$xpjT.n.vtRZCaC0FQEjJ2Q$DV81tY1Rp1pnCF6QtfDsYZSgPYto1MNZDRRFLCnDWO0",
                 "name": "Jane",
                 "appointment": "Project Manager"
             },
             {
                 "id": 3,
                 "username": "user103",
-                "password": "123456",
+                "password": "$pbkdf2-sha256$29000$xpjT.n.vtRZCaC0FQEjJ2Q$DV81tY1Rp1pnCF6QtfDsYZSgPYto1MNZDRRFLCnDWO0",
                 "name": "Tom",
                 "appointment": "Project Manager"
             },
             {
                 "id": 4,
                 "username": "user104",
-                "password": "123456",
+                "password": "$pbkdf2-sha256$29000$xpjT.n.vtRZCaC0FQEjJ2Q$DV81tY1Rp1pnCF6QtfDsYZSgPYto1MNZDRRFLCnDWO0",
                 "name": "Helen",
                 "appointment": "Project Manager"
             },
             {
                 "id": 5,
                 "username": "user105",
-                "password": "123456",
+                "password": "$pbkdf2-sha256$29000$xpjT.n.vtRZCaC0FQEjJ2Q$DV81tY1Rp1pnCF6QtfDsYZSgPYto1MNZDRRFLCnDWO0",
                 "name": "Mark",
                 "appointment": "Senior Project Manager"
             }
