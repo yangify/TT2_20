@@ -1,6 +1,8 @@
     import React from "react";
     import FormControl from '@mui/material/FormControl';
     import TextField from '@material-ui/core/TextField'; 
+    import ReactDOM from "react-dom";
+    import { createBrowserHistory } from "history";
 
 class login extends React.Component {
     constructor(props){
@@ -26,7 +28,15 @@ class login extends React.Component {
     handleSubmit(e){
         e.preventDefault()  
         console.log("submit")
-        console.log(JSON.stringify(this.state))
+        // form=JSON.stringify(this.state)
+        // if (fetch("api/login",body=form)){
+
+        // }
+        // const location = {
+        //     pathname: '/ProjectTable',
+        //     state: { fromDashboard: true }
+        //   }
+        //   history.push(location    )
     }
     render(){
         return (
