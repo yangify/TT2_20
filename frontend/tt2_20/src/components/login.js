@@ -49,6 +49,7 @@ class login extends React.Component {
         return (
             
             <div>
+                <TopNavBar />
                 <form className={FormControl}>
                     <TextField id="username" label="Username:" variant="standard" />
                     <TextField id="password" label="Password" variant="standard" />
