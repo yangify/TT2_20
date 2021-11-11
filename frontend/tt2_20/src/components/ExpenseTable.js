@@ -89,9 +89,9 @@ const ExpenseTable = () => {
       //create expense
       let currentData = expense_data;
       currentData.push({
-        expense_name: name,
+        name: name,
         description: description,
-        budget: budget,
+        amount: budget,
       });
       set_expense_data(currentData)
       setOpen(false);
