@@ -24,7 +24,25 @@ const ProjectTable = () => {
   const classes = useStyles();
   const [project_data, set_project_data] = useState([]);
 
+
+  
+
+
   useEffect(() => {
+    var API_URL = "http://localhost:5000/projects";
+    fetch(
+      API_URL,{
+          method:"get"
+      }
+      ).then(
+          res => res.json().then(
+              res=>{console.log(res)
+              if(res.status === true){
+                  console.log(res.user);
+                  this.setState({ redirect: true });
+              }
+          })
+      )
     var data_list = [
       {
         id: 1,
