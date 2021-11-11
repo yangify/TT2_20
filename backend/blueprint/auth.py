@@ -14,7 +14,7 @@ def login():
     for user in db.users:
         if username != user['username']: continue
         if password == user['password']:
-            session['user']: user
+            session['user'] = user
             return {'status': True, 'user': user}
 
     return {'status': False, 'user': None}
