@@ -37,33 +37,19 @@ const ProjectTable = () => {
     }).then((res) =>
       res.json().then((res) => {
         console.log(res);
-        if (res.status === true) {
-          console.log(res.user);
-         
-        }
+        var data_list = [
+          {
+
+            id: res.projects[0].id,
+            proj_name: res.projects[0].name,
+            description: res.projects[0].description,
+            budget: res.projects[0].budget,
+          },
+        ];
+        set_project_data(data_list);
       })
     );
-    var data_list = [
-      {
-        id: 1,
-        proj_name: "Project 1",
-        description: "this is proj 1",
-        budget: 5000.0,
-      },
-      {
-        id: 2,
-        proj_name: "Project 2",
-        description: "this is proj 2",
-        budget: 5000.0,
-      },
-      {
-        id: 3,
-        proj_name: "Project 3",
-        description: "this is proj 3",
-        budget: 5000.0,
-      },
-    ];
-    set_project_data(data_list);
+    
   }, []);
 
   return (

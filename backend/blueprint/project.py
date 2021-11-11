@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-from backend.blueprint.db import Database
+from blueprint.db import Database
 
 project = Blueprint('project', __name__)
 db = Database()
