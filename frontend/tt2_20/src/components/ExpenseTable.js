@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useParams } from "react-router-dom";
+import { myUserid } from "./global";
 
 import { useNavigate } from "react-router-dom";
 import {
@@ -51,17 +52,19 @@ const ExpenseTable = () => {
 
   useEffect(async () => {
     var API_URL = `http://localhost:5000/expenses/${id}/1`;
-    await fetch(API_URL, {
+    let data = []
+    var data_list = await fetch(API_URL, {
       method: "get",
     }).then((res) =>
       res.json().then((res) => {
         console.log(res);
         if (res.status === true) {
-          console.log(res);
+          data = res.expenses
+          console.log(res.expenses);
         }
       })
     );
-
+    console.log(data)
     var data_list = [
       {
         id: 1,
@@ -74,7 +77,7 @@ const ExpenseTable = () => {
         updated_by: "User1",
       },
     ];
-    set_expense_data(data_list);
+    set_expense_data(data);
   }, []);
 
   const AddDialog = (props) => {
@@ -322,19 +325,19 @@ const ExpenseTable = () => {
             <TableBody>
               {expense_data.map((row_data) => (
                 <TableRow
-                  key={row_data.id}
+                  key={row_data.project_id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   className={classes.tableRow}
                 >
                   <TableCell component="th" align="left">
-                    {row_data.id}
+                    {row_data.project_id}
                   </TableCell>
-                  <TableCell align="right">{row_data.expense_name}</TableCell>
+                  <TableCell align="right">{row_data.name}</TableCell>
                   <TableCell align="right">{row_data.description}</TableCell>
-                  <TableCell align="right">{row_data.budget}</TableCell>
-                  <TableCell align="right">{row_data.date_added}</TableCell>
+                  <TableCell align="right">{row_data.amount}</TableCell>
+                  <TableCell align="right">{row_data.created_at}</TableCell>
                   <TableCell align="right">{row_data.created_by}</TableCell>
-                  <TableCell align="right">{row_data.date_updated}</TableCell>
+                  <TableCell align="right">{row_data.updated_at}</TableCell>
                   <TableCell align="right">{row_data.updated_by}</TableCell>
                   <TableCell align="right">
                     <Button
