@@ -5,11 +5,13 @@
     import logo from './DBSLogo.jpg'
     
     export let myGlobal = { username: ""};
+    import { myGlobal,myUserid } from './global';
+    
 class login extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            username:"",
+            usernames:"",
             password:"",
             success:"",
             redirect: null,
@@ -18,7 +20,9 @@ class login extends React.Component {
     };
     handleSubmit(e){
 
+        
         var username = document.getElementById("username").value
+        this.setState({ usernames: username })
         var password = document.getElementById("password").value
         var API_URL = "http://localhost:5000/login";
         e.preventDefault()  
@@ -40,6 +44,7 @@ class login extends React.Component {
                     if(res.status === true){
                         console.log(res.user);
                         myGlobal.username = res.user.name;
+                        myUserid.id = res.user.id;
                         console.log(myGlobal.username);
                         this.setState({ redirect: true });
                     }
@@ -79,4 +84,4 @@ class login extends React.Component {
     };
 
 };
-export default login;
+export default (login);
