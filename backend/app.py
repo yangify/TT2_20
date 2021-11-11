@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 
 from blueprint.auth import auth
 from blueprint.project import project
@@ -9,6 +10,7 @@ app.register_blueprint(auth)
 app.register_blueprint(expense)
 app.register_blueprint(project)
 app.secret_key = 'supersecretkey'
+CORS(app)
 
 
 @app.route('/')

@@ -1,4 +1,6 @@
 from flask import Blueprint, request, session
+from flask_cors import cross_origin
+
 from backend.blueprint.db import Database
 
 auth = Blueprint('login', __name__)
@@ -6,6 +8,7 @@ db = Database()
 
 
 @auth.route('/login', methods=['POST'])
+@cross_origin()
 def login():
     username = request.form['username']
     password = request.form['password']
@@ -20,6 +23,7 @@ def login():
 
 
 @auth.route('/logout', methods=['POST'])
+@cross_origin()
 def logout():
     session['user'] = None
     return 'logout!'
