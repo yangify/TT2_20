@@ -37,21 +37,8 @@ const ProjectTable = () => {
     }).then((res) =>
       res.json().then((res) => {
         console.log(res);
-        var data_list = [];
         
-        for(var x=0; x < res.projects.length; x++){
-          var test1 = [{
-            id: x,
-            proj_name: res.projects[x].name,
-            description: res.projects[x].description,
-            budget: res.projects[x].budget,
-          },];
-          console.log(test1);
-          data_list.push(test1);
-
-        }
-        console.log(data_list[0]);
-        /*var data_list = [
+        var data_list = [
           {
 
             id: res.projects[0].id,
@@ -59,7 +46,7 @@ const ProjectTable = () => {
             description: res.projects[0].description,
             budget: res.projects[0].budget,
           },
-        ];*/
+        ];
         set_project_data(data_list);
       })
     );
@@ -81,7 +68,7 @@ const ProjectTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {project_data[0].map((row_data) => (
+            {project_data.map((row_data) => (
               <TableRow
                 key={row_data.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
