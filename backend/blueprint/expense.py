@@ -101,7 +101,7 @@ def has_expense(expense, user_id):
 
 def has_project(project_id, user_id):
     for p in db.projects:
-        if p['id'] == int(project_id) and p['user_id'] == user_id:
+        if p['id'] == int(project_id) and p['user_id'] == int(user_id):
             return True
     return False
 
