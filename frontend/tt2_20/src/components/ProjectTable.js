@@ -10,7 +10,8 @@ import {
   Paper,
   Button,
 } from "@material-ui/core";
-
+import TopNavBar from "./TopNavBar";
+import BottomNavBar from "./BottomNavBar";
 const useStyles = makeStyles({
   tableRow: {
     "&:hover": {
@@ -48,43 +49,47 @@ const ProjectTable = () => {
   }, []);
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>S/N</TableCell>
-            <TableCell align="right">Project Name</TableCell>
-            <TableCell align="right">Description</TableCell>
-            <TableCell align="right">Budget</TableCell>
-            <TableCell align="right"></TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {project_data.map((row_data) => (
-            <TableRow
-              key={row_data.id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              className={classes.tableRow}
-            >
-              <TableCell component="th" align="left">
-                {row_data.id}
-              </TableCell>
-              <TableCell align="right">{row_data.proj_name}</TableCell>
-              <TableCell align="right">{row_data.description}</TableCell>
-              <TableCell align="right">{row_data.budget}</TableCell>
-              <TableCell align="right">
-                <Button
-                  variant="contained"
-                  style={{ backgroundColor: "#4341A1", color: "white" }}
-                >
-                  View Expenses
-                </Button>
-              </TableCell>
+    <div>
+      <TopNavBar/>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>S/N</TableCell>
+              <TableCell align="right">Project Name</TableCell>
+              <TableCell align="right">Description</TableCell>
+              <TableCell align="right">Budget</TableCell>
+              <TableCell align="right"></TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {project_data.map((row_data) => (
+              <TableRow
+                key={row_data.id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                className={classes.tableRow}
+              >
+                <TableCell component="th" align="left">
+                  {row_data.id}
+                </TableCell>
+                <TableCell align="right">{row_data.proj_name}</TableCell>
+                <TableCell align="right">{row_data.description}</TableCell>
+                <TableCell align="right">{row_data.budget}</TableCell>
+                <TableCell align="right">
+                  <Button
+                    variant="contained"
+                    style={{ backgroundColor: "#4341A1", color: "white" }}
+                  >
+                    View Expenses
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <BottomNavBar/>
+    </div>
   );
 };
 

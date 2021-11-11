@@ -4,6 +4,8 @@
     import { render } from "react-dom";
     import TopNavBar from "./TopNavBar";
     import BottomNavBar from "./BottomNavBar";
+    import axios from 'axios';
+
     
 class login extends React.Component {
     constructor(props){
@@ -14,46 +16,41 @@ class login extends React.Component {
             success:""
         }
         this.handleSubmit=this.handleSubmit.bind(this)
-        this.handleUser=this.handleUser.bind(this)
-        this.handlePw=this.handlePw.bind(this)
     };
-    handlePw(e){
-        this.setState({
-            password:e.target.value
-        })
-    }
-    handleUser(e){
-        this.setState({
-            username:e.target.value
-        })
-    }
     handleSubmit(e){
+
+        var username = document.getElementById("username").value
+        var password = document.getElementById("password").value
+        var API_URL = "http://localhost:5000/login";
         e.preventDefault()  
         console.log("submit")
-        // form=JSON.stringify(this.state)
-        // if (fetch("api/login",body=form)){      
-        // const location = {
-        //     pathname: '/ProjectTable',
-        //     state: { fromDashboard: true }
-        //   }
-        //   history.push(location)}
-        //   else{
-        //       this.setState(
-        //           (state)=>{
-        //               success:"login failed"
-        //           }
-        //       )
-        //   }
+        console.log(username);
+        console.log(password);
+        let formData = new FormData();
+        formData.append('username', username);
+        formData.append('password', password);
+        console.log(formData)
+        fetch(
+            API_URL,{
+                body:formData,
+                method:"post"
+            }
+            ).then(
+                res => res.json().then(
+                    res=>console.log(res)
+                )
+            )
     }
+            
     render(){
         return (
             
             <div>
-                <TopNavBar />
-                <form className={FormControl}>
+                <div style={{paddingTop:"50px"}}>LOGIN PAGE</div>
+                <form onSubmit={this.handleSubmit} className={FormControl}>
                     <TextField id="username" label="Username:" variant="standard" />
                     <TextField id="password" label="Password" variant="standard" />
-                    <input type="submit" onSubmit></input>
+                    <input type="submit"></input>
                 </form>
                 <p>{this.state.success}</p>
             </div>

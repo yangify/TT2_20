@@ -10,7 +10,8 @@ import {
   Paper,
   Button,
 } from "@material-ui/core";
-
+import TopNavBar from "./TopNavBar";
+import BottomNavBar from "./BottomNavBar";
 const useStyles = makeStyles({
   tableRow: {
     "&:hover": {
@@ -41,77 +42,81 @@ const ExpenseTable = () => {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
-        <h2>Expenses</h2>
-        <Button
-          variant="contained"
+    <div>
+      <TopNavBar/>
+        <div
           style={{
-            backgroundColor: "#4341A1",
-            color: "white",
-            height: 30,
-            marginLeft: "Auto",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
           }}
         >
-          Add Expenses
-        </Button>
-      </div>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>S/N</TableCell>
-              <TableCell align="right">Expense Name</TableCell>
-              <TableCell align="right">Description</TableCell>
-              <TableCell align="right">Budget</TableCell>
-              <TableCell align="right">Date Added</TableCell>
-              <TableCell align="right">Created By</TableCell>
-              <TableCell align="right">Date Updated</TableCell>
-              <TableCell align="right">Updated By</TableCell>
-              <TableCell align="right">Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {expense_data.map((row_data) => (
-              <TableRow
-                key={row_data.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                className={classes.tableRow}
-              >
-                <TableCell component="th" align="left">
-                  {row_data.id}
-                </TableCell>
-                <TableCell align="right">{row_data.expense_name}</TableCell>
-                <TableCell align="right">{row_data.description}</TableCell>
-                <TableCell align="right">{row_data.budget}</TableCell>
-                <TableCell align="right">{row_data.date_added}</TableCell>
-                <TableCell align="right">{row_data.created_by}</TableCell>
-                <TableCell align="right">{row_data.date_updated}</TableCell>
-                <TableCell align="right">{row_data.updated_by}</TableCell>
-                <TableCell align="right">
-                  <Button
-                    variant="contained"
-                    style={{ backgroundColor: "#4341A1", color: "white" }}
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    variant="contained"
-                    style={{ backgroundColor: "#D1675A", color: "white" }}
-                  >
-                    Delete
-                  </Button>
-                </TableCell>
+          <h2>Expenses</h2>
+          <Button
+            variant="contained"
+            style={{
+              backgroundColor: "#4341A1",
+              color: "white",
+              height: 30,
+              marginLeft: "Auto",
+            }}
+          >
+            Add Expenses
+          </Button>
+        </div>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>S/N</TableCell>
+                <TableCell align="right">Expense Name</TableCell>
+                <TableCell align="right">Description</TableCell>
+                <TableCell align="right">Budget</TableCell>
+                <TableCell align="right">Date Added</TableCell>
+                <TableCell align="right">Created By</TableCell>
+                <TableCell align="right">Date Updated</TableCell>
+                <TableCell align="right">Updated By</TableCell>
+                <TableCell align="right">Actions</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {expense_data.map((row_data) => (
+                <TableRow
+                  key={row_data.id}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  className={classes.tableRow}
+                >
+                  <TableCell component="th" align="left">
+                    {row_data.id}
+                  </TableCell>
+                  <TableCell align="right">{row_data.expense_name}</TableCell>
+                  <TableCell align="right">{row_data.description}</TableCell>
+                  <TableCell align="right">{row_data.budget}</TableCell>
+                  <TableCell align="right">{row_data.date_added}</TableCell>
+                  <TableCell align="right">{row_data.created_by}</TableCell>
+                  <TableCell align="right">{row_data.date_updated}</TableCell>
+                  <TableCell align="right">{row_data.updated_by}</TableCell>
+                  <TableCell align="right">
+                    <Button
+                      variant="contained"
+                      style={{ backgroundColor: "#4341A1", color: "white" }}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="contained"
+                      style={{ backgroundColor: "#D1675A", color: "white" }}
+                    >
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <BottomNavBar/>
+      </div>
     </>
   );
 };
