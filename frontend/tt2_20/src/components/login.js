@@ -1,59 +1,80 @@
     import React from "react";
     import FormControl from '@mui/material/FormControl';
     import TextField from '@material-ui/core/TextField'; 
-    import { render } from "react-dom";
-    import TopNavBar from "./TopNavBar";
-    import BottomNavBar from "./BottomNavBar";
+    import { Navigate  } from 'react-router-dom';
+    import logo from './DBSLogo.jpg'
+    
+    import { myGlobal,myUserid } from './global';
     
 class login extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            username:"",
+            usernames:"",
             password:"",
-            success:""
+            success:"",
+            redirect: null,
         }
         this.handleSubmit=this.handleSubmit.bind(this)
-        this.handleUser=this.handleUser.bind(this)
-        this.handlePw=this.handlePw.bind(this)
     };
-    handlePw(e){
-        this.setState({
-            password:e.target.value
-        })
-    }
-    handleUser(e){
-        this.setState({
-            username:e.target.value
-        })
-    }
     handleSubmit(e){
+
+        
+        var username = document.getElementById("username").value
+        this.setState({ usernames: username })
+        var password = document.getElementById("password").value
+        var API_URL = "http://localhost:5000/login";
         e.preventDefault()  
         console.log("submit")
-        // form=JSON.stringify(this.state)
-        // if (fetch("api/login",body=form)){      
-        // const location = {
-        //     pathname: '/ProjectTable',
-        //     state: { fromDashboard: true }
-        //   }
-        //   history.push(location)}
-        //   else{
-        //       this.setState(
-        //           (state)=>{
-        //               success:"login failed"
-        //           }
-        //       )
-        //   }
+        console.log(username);
+        console.log(password);
+        let formData = new FormData();
+        formData.append('username', username);
+        formData.append('password', password);
+        console.log(formData)
+        fetch(
+            API_URL,{
+                body:formData,
+                method:"post"
+            }
+            ).then(
+                res => res.json().then(
+                    res=>{console.log(res)
+                    if(res.status === true){
+                        console.log(res.user);
+                        myGlobal.username = res.user.name;
+                        myUserid.id = res.user.id;
+                        console.log(myGlobal.username);
+                        this.setState({ redirect: true });
+                    }
+                    else{
+                        this.setState({success:"Wrong user/password!"})
+                    }
+                })
+            )
     }
+            
     render(){
+
+        if (this.state.redirect) {
+            return (
+                <Navigate  to="/projects" />
+            );
+        }
         return (
             
-            <div>
-                <TopNavBar />
-                <form className={FormControl}>
-                    <TextField id="username" label="Username:" variant="standard" />
-                    <TextField id="password" label="Password" variant="standard" />
-                    <input type="submit" onSubmit></input>
+            <div style={{position: 'absolute',
+                top: '15%',
+                }}>
+                    <img src={logo} style={{width:'auto',height:'auto',maxWidth:"20%"}} />
+                <div>
+                    <h1>LOGIN PAGE</h1>
+                </div>
+                
+                <form onSubmit={this.handleSubmit} className={FormControl}>
+                    <TextField id="username" label="Username:" variant="standard" style={{padding:3}} /> 
+                    <TextField type="password" id="password" label="Password" variant="standard" style={{padding:3}} />
+                    <input type="submit" value="Login"></input>
                 </form>
                 <p>{this.state.success}</p>
             </div>
@@ -62,4 +83,4 @@ class login extends React.Component {
     };
 
 };
-export default login;
+export default (login);
