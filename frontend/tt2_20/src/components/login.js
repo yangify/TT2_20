@@ -9,7 +9,8 @@ class login extends React.Component {
         super(props);
         this.state={
             username:"",
-            password:""
+            password:"",
+            success:""
         }
         this.handleSubmit=this.handleSubmit.bind(this)
         this.handleUser=this.handleUser.bind(this)
@@ -28,15 +29,20 @@ class login extends React.Component {
     handleSubmit(e){
         e.preventDefault()  
         console.log("submit")
-        // form=JSON.stringify(this.state)
-        // if (fetch("api/login",body=form)){
-
-        // }
-        // const location = {
-        //     pathname: '/ProjectTable',
-        //     state: { fromDashboard: true }
-        //   }
-        //   history.push(location    )
+        form=JSON.stringify(this.state)
+        if (fetch("api/login",body=form)){      
+        const location = {
+            pathname: '/ProjectTable',
+            state: { fromDashboard: true }
+          }
+          history.push(location)}
+          else{
+              this.setState(
+                  (state)=>{
+                      success:"login failed"
+                  }
+              )
+          }
     }
     render(){
         return (
@@ -47,6 +53,7 @@ class login extends React.Component {
                     <TextField id="password" label="Password" variant="standard" onChange={this.handlePw} />
                     <input type="submit" value="Login"></input>
                 </form>
+                <p>{this.state.success}</p>
             </div>
             
         );
