@@ -9,6 +9,13 @@ import {
   TableRow,
   Paper,
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Typography,
+  TextField,
 } from "@material-ui/core";
 
 const useStyles = makeStyles({
@@ -22,6 +29,12 @@ const useStyles = makeStyles({
 const ExpenseTable = () => {
   const classes = useStyles();
   const [expense_data, set_expense_data] = useState([]);
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
   useEffect(() => {
     var data_list = [
@@ -38,6 +51,95 @@ const ExpenseTable = () => {
     ];
     set_expense_data(data_list);
   }, []);
+
+  const AddDialog = () => {
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [budget, setBudget] = useState(0);
+
+    const handleSubmit = () => {
+      //create expense
+      console.log(name);
+      setOpen(false);
+    };
+
+    const handleClose = () => {
+      setOpen(false);
+    };
+
+    return (
+      <>
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle>Add Expense</DialogTitle>
+          <DialogContent>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                marginTop: 10,
+                marginBottom: 10,
+              }}
+            >
+              <Typography>Expenses Name:</Typography>
+              <TextField
+                style={{ marginLeft: "auto", width: 200 }}
+                variant="outlined"
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+                value={name}
+              />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                marginTop: 10,
+                marginBottom: 10,
+              }}
+            >
+              <Typography>Description:</Typography>
+              <TextField
+                style={{ marginLeft: "auto", width: 200 }}
+                variant="outlined"
+                multiline
+                rows={4}
+                onChange={(e) => {
+                  setDescription(e.target.value);
+                }}
+                value={description}
+              />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                marginTop: 10,
+                marginBottom: 10,
+              }}
+            >
+              <Typography>Budget:</Typography>
+              <TextField
+                style={{ marginLeft: "auto", width: 200 }}
+                variant="outlined"
+                onChange={(e) => {
+                  setBudget(e.target.value);
+                }}
+                value={budget}
+              />
+            </div>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleSubmit}>Done</Button>
+            <Button onClick={handleClose}>Discard</Button>
+          </DialogActions>
+        </Dialog>
+      </>
+    );
+  };
 
   return (
     <>
@@ -57,10 +159,12 @@ const ExpenseTable = () => {
             height: 30,
             marginLeft: "Auto",
           }}
+          onClick={handleClickOpen}
         >
           Add Expenses
         </Button>
       </div>
+      <AddDialog />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
