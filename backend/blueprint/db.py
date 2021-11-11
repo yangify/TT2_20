@@ -1,11 +1,11 @@
 class Database:
     def __init__(self):
-        self.users = self.users()
-        self.projects = self.projects()
-        self.expenses = self.expenses()
-        self.category = self.category()
+        self.users = self._users()
+        self.projects = self._projects()
+        self.expenses = self._expenses()
+        self.category = self._category()
 
-    def category(self):
+    def _category(self):
         return [
             {
                 "id": 1,
@@ -37,7 +37,7 @@ class Database:
             }
         ]
 
-    def expenses(self):
+    def _expenses(self):
         return [
             {
                 "id": 1,
@@ -65,7 +65,7 @@ class Database:
             }
         ]
 
-    def projects(self):
+    def _projects(self):
         return [
             {
                 "id": 1,
@@ -90,7 +90,7 @@ class Database:
             }
         ]
 
-    def users(self):
+    def _users(self):
         return [
             {
                 "id": 1,
