@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { styled } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import {
   Table,
-  Typography,
   TableBody,
   TableCell,
   TableContainer,
@@ -12,12 +11,22 @@ import {
   Button,
 } from "@material-ui/core";
 
+const useStyles = makeStyles({
+  tableRow: {
+    "&:hover": {
+      backgroundColor: "#EEEEEE !important",
+    },
+  },
+});
+
 const ProjectTable = () => {
+  const classes = useStyles();
   const [project_data, set_project_data] = useState([]);
+
   useEffect(() => {
     var data_list = [
       {
-        id: 2,
+        id: 1,
         proj_name: "Project 1",
         description: "this is proj 1",
         budget: 5000.0,
@@ -38,26 +47,6 @@ const ProjectTable = () => {
     set_project_data(data_list);
   }, []);
 
-  //   const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  //     [`&.${tableCellClasses.head}`]: {
-  //       backgroundColor: theme.palette.common.black,
-  //       color: theme.palette.common.white,
-  //     },
-  //     [`&.${tableCellClasses.body}`]: {
-  //       fontSize: 14,
-  //     },
-  //   }));
-
-  const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-    // hide last border
-    "&:last-child td, &:last-child th": {
-      border: 0,
-    },
-  }));
-
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -75,14 +64,22 @@ const ProjectTable = () => {
             <TableRow
               key={row_data.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              className={classes.tableRow}
             >
-              <TableCell component="th" align="right">
+              <TableCell component="th" align="left">
                 {row_data.id}
               </TableCell>
               <TableCell align="right">{row_data.proj_name}</TableCell>
               <TableCell align="right">{row_data.description}</TableCell>
               <TableCell align="right">{row_data.budget}</TableCell>
-              <Button variant="contained">View Expenses</Button>
+              <TableCell align="right">
+                <Button
+                  variant="contained"
+                  style={{ backgroundColor: "#4341A1", color: "white" }}
+                >
+                  View Expenses
+                </Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
