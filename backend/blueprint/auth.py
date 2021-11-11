@@ -1,7 +1,8 @@
 from flask import Blueprint, request, session
+from passlib.hash import pbkdf2_sha256
 from flask_cors import cross_origin
 
-from backend.blueprint.db import Database
+from blueprint.db import Database
 
 auth = Blueprint('login', __name__)
 db = Database()
@@ -15,7 +16,7 @@ def login():
 
     for user in db.users:
         if username != user['username']: continue
-        if password == user['password']:
+        if pbkdf2_sha256.verify(password, user["password"]):
             session['user'] = user
             return {'status': True, 'user': user}
 
