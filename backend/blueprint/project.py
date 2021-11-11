@@ -1,6 +1,6 @@
 from flask import Blueprint, session
 
-from blueprint.db import Database
+from backend.blueprint.db import Database
 
 project = Blueprint('project', __name__)
 db = Database()
@@ -10,5 +10,5 @@ db = Database()
 def get_projects():
     if 'user' not in session or not session['user']: return {'status': False, 'message': 'no user logged in'}
     user_id = session['user']['id']
-    projects = [p for p in db.projects if p['id'] == user_id]
+    projects = [p for p in db.projects if p['user_id'] == user_id]
     return {'projects': projects}
