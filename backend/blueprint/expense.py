@@ -44,7 +44,7 @@ def create_expense():
         if e['name'] == expense_name: check_exist = e
     if check_exist: return {'status': False, 'message': 'expense already exists'}
     get_last = db.expenses[-1]
-    new_expense_id = get_last + 1
+    new_expense_id = get_last['id'] + 1
     input = {
         "id": new_expense_id,
         "project_id": int(project_id),
