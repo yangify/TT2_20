@@ -44,14 +44,14 @@ def create_expense(user_id):
     input = {
         "id": new_expense_id,
         "project_id": int(project_id),
-        "category_id": int(category_id),
+        "category_id": 2,
         "name": expense_name,
         "description": expense_description,
         "amount": int(amount),
         "created_at": datetime.now(),
-        "created_by": session['user'],
+        "created_by": 'Jacky',
         "updated_at": datetime.now(),
-        "updated_by": session['user']
+        "updated_by": 'Jacky'
     }
     db.expenses.append(input)
     for e in db.expenses:
