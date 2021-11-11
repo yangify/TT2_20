@@ -70,7 +70,7 @@ class login extends React.Component {
                 <form onSubmit={this.handleSubmit} className={FormControl}>
                     <TextField id="username" label="Username:" variant="standard" style={{padding:3}} /> 
                     <TextField type="password" id="password" label="Password" variant="standard" style={{padding:3}} />
-                    <input type="submit"></input>
+                    <input type="submit" value="Login"></input>
                 </form>
                 <p>{this.state.success}</p>
             </div>
