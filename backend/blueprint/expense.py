@@ -1,5 +1,5 @@
 from flask import Blueprint, session, request
-from backend.blueprint.db import Database
+from blueprint.db import Database
 
 expense = Blueprint('expense', __name__)
 db = Database()

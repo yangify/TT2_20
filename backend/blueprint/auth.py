@@ -1,7 +1,7 @@
 from flask import Blueprint, request, session
 from flask_cors import cross_origin
 
-from backend.blueprint.db import Database
+from blueprint.db import Database
 
 auth = Blueprint('login', __name__)
 db = Database()
