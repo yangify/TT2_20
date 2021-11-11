@@ -1,3 +1,6 @@
+venv/
+
+frontend/tt2_20/node_modules
 # resource
 resources
 

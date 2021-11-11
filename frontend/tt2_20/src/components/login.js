@@ -1,13 +1,17 @@
     import React from "react";
     import FormControl from '@mui/material/FormControl';
     import TextField from '@material-ui/core/TextField'; 
-
+    import { render } from "react-dom";
+    import TopNavBar from "./TopNavBar";
+    import BottomNavBar from "./BottomNavBar";
+    
 class login extends React.Component {
     constructor(props){
         super(props);
         this.state={
             username:"",
-            password:""
+            password:"",
+            success:""
         }
         this.handleSubmit=this.handleSubmit.bind(this)
         this.handleUser=this.handleUser.bind(this)
@@ -26,17 +30,32 @@ class login extends React.Component {
     handleSubmit(e){
         e.preventDefault()  
         console.log("submit")
-        console.log(JSON.stringify(this.state))
+        // form=JSON.stringify(this.state)
+        // if (fetch("api/login",body=form)){      
+        // const location = {
+        //     pathname: '/ProjectTable',
+        //     state: { fromDashboard: true }
+        //   }
+        //   history.push(location)}
+        //   else{
+        //       this.setState(
+        //           (state)=>{
+        //               success:"login failed"
+        //           }
+        //       )
+        //   }
     }
     render(){
         return (
+            
             <div>
-                <h1>Login Page</h1>
-                <form className={FormControl} onSubmit={this.handleSubmit}>
-                    <TextField id="username" label="Username:" variant="standard" onChange={this.handleUser} />
-                    <TextField id="password" label="Password" variant="standard" onChange={this.handlePw} />
-                    <input type="submit" value="Login"></input>
+                <TopNavBar />
+                <form className={FormControl}>
+                    <TextField id="username" label="Username:" variant="standard" />
+                    <TextField id="password" label="Password" variant="standard" />
+                    <input type="submit" onSubmit></input>
                 </form>
+                <p>{this.state.success}</p>
             </div>
             
         );
