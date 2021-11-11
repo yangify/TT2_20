@@ -29,3 +29,13 @@ def expense():
             return output
     output = {"found": False, "expense": 'expense not found'}
     return output
+
+#delete expense in project
+@expense.route('/expense', methods=['DELETE'])
+def expense():
+    expense_id = request.form['expense_id']
+    try:
+        db.expenses.remove(expense_id)
+        return True
+    except:
+        return False
