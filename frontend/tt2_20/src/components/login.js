@@ -4,6 +4,7 @@
     import { Navigate  } from 'react-router-dom';
     import logo from './DBSLogo.jpg'
     
+    export let myGlobal = { username: ""};
 class login extends React.Component {
     constructor(props){
         super(props);
@@ -38,6 +39,8 @@ class login extends React.Component {
                     res=>{console.log(res)
                     if(res.status === true){
                         console.log(res.user);
+                        myGlobal.username = res.user.name;
+                        console.log(myGlobal.username);
                         this.setState({ redirect: true });
                     }
                     else{
