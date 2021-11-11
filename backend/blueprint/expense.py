@@ -2,7 +2,7 @@ from flask import Blueprint, request
 
 expense = Blueprint('expense', __name__)
 
-from blueprint.db import Database
+from backend.blueprint.db import Database
 db = Database()
 
 
