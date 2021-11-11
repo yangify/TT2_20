@@ -2,8 +2,8 @@ from flask import Flask
 from flask_cors import CORS
 
 from blueprint.auth import auth
-from blueprint.project import project
 from blueprint.expense import expense
+from blueprint.project import project
 
 app = Flask(__name__)
 app.register_blueprint(auth)
