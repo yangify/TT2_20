@@ -19,6 +19,7 @@ def login():
     return {'status': False, 'user': None}
 
 
-@auth.route('/logout')
+@auth.route('/logout', methods=['POST'])
 def logout():
+    session['user'] = None
     return 'logout!'
