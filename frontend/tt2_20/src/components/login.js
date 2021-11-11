@@ -1,11 +1,8 @@
     import React from "react";
     import FormControl from '@mui/material/FormControl';
     import TextField from '@material-ui/core/TextField'; 
-    import { render } from "react-dom";
-    import TopNavBar from "./TopNavBar";
-    import BottomNavBar from "./BottomNavBar";
-    import axios from 'axios';
     import { Navigate  } from 'react-router-dom';
+    import logo from './DBSLogo.jpg'
     
 class login extends React.Component {
     constructor(props){
@@ -43,6 +40,9 @@ class login extends React.Component {
                         console.log(res.user);
                         this.setState({ redirect: true });
                     }
+                    else{
+                        this.setState({success:"Wrong user/password!"})
+                    }
                 })
             )
     }
@@ -56,11 +56,17 @@ class login extends React.Component {
         }
         return (
             
-            <div>
-                <div style={{paddingTop:"50px"}}>LOGIN PAGE</div>
+            <div style={{position: 'absolute',
+                top: '15%',
+                }}>
+                    <img src={logo} style={{width:'auto',height:'auto',maxWidth:"20%"}} />
+                <div>
+                    <h1>LOGIN PAGE</h1>
+                </div>
+                
                 <form onSubmit={this.handleSubmit} className={FormControl}>
-                    <TextField id="username" label="Username:" variant="standard" />
-                    <TextField id="password" label="Password" variant="standard" />
+                    <TextField id="username" label="Username:" variant="standard" style={{padding:3}} /> 
+                    <TextField type="password" id="password" label="Password" variant="standard" style={{padding:3}} />
                     <input type="submit"></input>
                 </form>
                 <p>{this.state.success}</p>
