@@ -4,7 +4,6 @@
     import { Navigate  } from 'react-router-dom';
     import logo from './DBSLogo.jpg'
     
-    export let myGlobal = { username: ""};
     import { myGlobal,myUserid } from './global';
     
 class login extends React.Component {
