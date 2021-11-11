@@ -12,6 +12,9 @@ import {
 } from "@material-ui/core";
 import TopNavBar from "./TopNavBar";
 import BottomNavBar from "./BottomNavBar";
+import { myUserid } from './global';
+
+
 const useStyles = makeStyles({
   tableRow: {
     "&:hover": {
@@ -19,16 +22,12 @@ const useStyles = makeStyles({
     },
   },
 });
-
 const ProjectTable = () => {
   const classes = useStyles();
   const [project_data, set_project_data] = useState([]);
 
-
-  
-
-
   useEffect(() => {
+    console.log(myUserid.id);
     var API_URL = "http://localhost:5000/projects";
     fetch(
       API_URL,{
