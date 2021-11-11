@@ -5,7 +5,7 @@
     import TopNavBar from "./TopNavBar";
     import BottomNavBar from "./BottomNavBar";
     import axios from 'axios';
-
+    import { Navigate  } from 'react-router-dom';
     
 class login extends React.Component {
     constructor(props){
@@ -13,7 +13,8 @@ class login extends React.Component {
         this.state={
             username:"",
             password:"",
-            success:""
+            success:"",
+            redirect: null,
         }
         this.handleSubmit=this.handleSubmit.bind(this)
     };
@@ -37,12 +38,22 @@ class login extends React.Component {
             }
             ).then(
                 res => res.json().then(
-                    res=>console.log(res)
-                )
+                    res=>{console.log(res)
+                    if(res.status === true){
+                        console.log(res.user);
+                        this.setState({ redirect: true });
+                    }
+                })
             )
     }
             
     render(){
+
+        if (this.state.redirect) {
+            return (
+                <Navigate  to="/projects" />
+            );
+        }
         return (
             
             <div>
