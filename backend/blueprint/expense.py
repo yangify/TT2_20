@@ -2,7 +2,7 @@ import json
 
 from flask import Blueprint, session, request
 from datetime import datetime
-from backend.blueprint.db import Database
+from blueprint.db import Database
 
 expense_blueprint = Blueprint('expense', __name__)
 db = Database()
@@ -40,7 +40,7 @@ def create_expense(user_id):
         if e['name'] == expense_name: check_exist = e
     if check_exist: return {'status': False, 'message': 'expense already exists'}
     get_last = db.expenses[-1]
-    new_expense_id = get_last['id'] + 1
+    new_expense_id = get_last + 1
     input = {
         "id": new_expense_id,
         "project_id": int(project_id),
