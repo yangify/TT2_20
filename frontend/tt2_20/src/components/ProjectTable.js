@@ -12,13 +12,10 @@ import {
 } from "@material-ui/core";
 import TopNavBar from "./TopNavBar";
 import BottomNavBar from "./BottomNavBar";
-<<<<<<< HEAD
 import { myUserid } from './global';
 
-=======
 
 import { useNavigate } from "react-router-dom";
->>>>>>> 5d5bbec85421c9fe7b723c85e1c606507039d6ed
 
 const useStyles = makeStyles({
   tableRow: {
@@ -30,10 +27,7 @@ const useStyles = makeStyles({
 const ProjectTable = () => {
   const classes = useStyles();
   const [project_data, set_project_data] = useState([]);
-<<<<<<< HEAD
-=======
   const navigate = useNavigate();
->>>>>>> 5d5bbec85421c9fe7b723c85e1c606507039d6ed
 
   useEffect(() => {
     console.log(myUserid.id);
